@@ -1,33 +1,78 @@
-import React from "react";
-import { FaTools } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function EditPaper() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [paper, setPaper] = useState({
+    title: "",
+    subject: "",
+    medium: "",
+    grade: "",
+    paperCategory: "",
+    downloadLink: "",
+  });
+  const [loading, setLoading] = useState(true);
+
+  const API_URL = import.meta.env.VITE_API_URL; 
+
+  // Fetch paper by ID
+  useEffect(() => {
+    const fetchPaper = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/api/paper/${id}`);
+        setPaper(res.data);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching paper:", err);
+      }
+    };
+    fetchPaper();
+  }, [id, API_URL]);
+
+  const handleChange = (e) => {
+    setPaper({ ...paper, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`${API_URL}/api/paper/${id}`, paper);
+      alert("Paper updated successfully!");
+      navigate("/papers"); // 👈 Redirect to papers list page
+    } catch (err) {
+      alert("Error updating paper");
+      console.error(err);
+    }
+  };
+
+  if (loading) return <p className="text-center mt-10">Loading paper data...</p>;
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-blue-50 px-4">
-      <div className="bg-white p-8 rounded-lg shadow-xl max-w-lg w-full text-center animate-fadeIn">
-        <FaTools className="text-5xl text-blue-500 mb-4 mx-auto animate-pulse" />
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin Panel</h1>
-        <p className="text-gray-600 mb-4">
-          The admin dashboard is currently under construction.
-        </p>
-        <p className="text-sm text-gray-500 mb-1">
-          🚧 Features like Admin Account management, reports & analytics are on the way.
-        </p>
-        <p className="text-sm text-gray-400 mb-6">
-          Thank you for your patience!
-        </p>
-
-        {/* 🌀 Animated Loading Bar */}
-        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-400 to-blue-600 h-full w-1/2 animate-loadingBar rounded-full" />
-        </div>
-
-        <div className="mt-6">
-          <span className="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
-            ⚠️ Update in Progress
-          </span>
-        </div>
-      </div>
+    <div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded shadow">
+      <h2 className="text-2xl font-bold mb-4 text-center">Edit Paper</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {["title", "subject", "medium", "grade", "paperCategory", "downloadLink"].map((field) => (
+          <div key={field}>
+            <label className="block text-sm font-medium text-gray-700 capitalize">{field}</label>
+            <input
+              type="text"
+              name={field}
+              value={paper[field]}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+              required
+            />
+          </div>
+        ))}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        >
+          Update Paper
+        </button>
+      </form>
     </div>
   );
 }
