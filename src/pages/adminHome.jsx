@@ -22,6 +22,9 @@ import AddPaper from "./papers/addPapers";
 import { GrUserAdmin } from "react-icons/gr";
 import Admin from "./admin/admin";
 import EditPaper from "./papers/editPaper";
+import HomeBanner from "./homeBanner/homeBanner";
+import { MdOutlinePermMedia } from "react-icons/md";
+import AddHomeBanner from "./homeBanner/addHomeBanner";
 
 export default function AdminHomePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -81,6 +84,7 @@ export default function AdminHomePage() {
           <NavItem to="/books" icon={<GiBookshelf />} label="View Books" />
           <NavItem to="/papers" icon={<IoBookSharp />} label="View Papers" />
           <NavItem to="/admin" icon={<GrUserAdmin />} label="Administrator" />
+          <NavItem to="/homeBanner" icon={<MdOutlinePermMedia />} label="Home Banner" />
         </div>
       </div>
 
@@ -106,6 +110,8 @@ export default function AdminHomePage() {
             <Route path="/addpaper" element={<AddPaper />} />
             <Route path="/editpaper/:id" element={<EditPaper />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/homeBanner" element={<HomeBanner />} />
+            <Route path="/addHomeBanner" element={<AddHomeBanner />} />
             {/* Add more admin routes here */}
           </Routes>
       </div>
