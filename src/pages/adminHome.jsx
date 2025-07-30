@@ -25,6 +25,11 @@ import EditPaper from "./papers/editPaper";
 import HomeBanner from "./homeBanner/homeBanner";
 import { MdOutlinePermMedia } from "react-icons/md";
 import AddHomeBanner from "./homeBanner/addHomeBanner";
+import Gallery from "./Gallery/gallery";
+import { FaCamera } from "react-icons/fa";
+import AddGallery from "./Gallery/addGallery";
+import ViewDetails from "./Gallery/viewdetails";
+import AddAdmin from "./admin/addAdmin";
 
 export default function AdminHomePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -85,6 +90,7 @@ export default function AdminHomePage() {
           <NavItem to="/papers" icon={<IoBookSharp />} label="View Papers" />
           <NavItem to="/admin" icon={<GrUserAdmin />} label="Administrator" />
           <NavItem to="/homeBanner" icon={<MdOutlinePermMedia />} label="Home Banner" />
+          <NavItem to="/gallery" icon={<FaCamera />} label="Gallery" />
         </div>
       </div>
 
@@ -110,8 +116,12 @@ export default function AdminHomePage() {
             <Route path="/addpaper" element={<AddPaper />} />
             <Route path="/editpaper/:id" element={<EditPaper />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/add-admin" element={<AddAdmin />} />
             <Route path="/homeBanner" element={<HomeBanner />} />
             <Route path="/addHomeBanner" element={<AddHomeBanner />} />
+            <Route path="gallery" element={<Gallery />} />
+            <Route path="/addGallery" element={<AddGallery />} />
+            <Route path="/gallery/:id" element={<ViewDetails />} />
             {/* Add more admin routes here */}
           </Routes>
       </div>
