@@ -4,12 +4,30 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const subjectsByGrade = {
-  "06": ["Mathematics", "Science", "Sinhala", "English", "History", "Geography", "Tamil", "Health and Physical Education", "Art", "Religion (Buddhism/Christianity/Hinduism/Islam)"],
-  "07": ["Mathematics", "Science", "Sinhala", "English", "History", "Geography", "Tamil", "Health and Physical Education", "Art", "Religion (Buddhism/Christianity/Hinduism/Islam)"],
-  "08": ["Mathematics", "Science", "Sinhala", "English", "History", "Geography", "Tamil", "Health and Physical Education", "Art", "Religion (Buddhism/Christianity/Hinduism/Islam)"],
-  "09": ["Mathematics", "Science", "Sinhala", "English", "History", "Geography", "Tamil", "Health and Physical Education", "Art", "Religion (Buddhism/Christianity/Hinduism/Islam)", "Information and Communication Technology (ICT)"],
-  "10": ["Mathematics", "Science", "Sinhala", "English", "History", "Geography", "Tamil", "Commerce", "Health and Physical Education", "Art", "Religion (Buddhism/Christianity/Hinduism/Islam)", "Information and Communication Technology (ICT)"],
-  "11": ["Mathematics", "Science", "Sinhala", "English Literature", "History", "Geography", "Tamil", "Commerce", "Health and Physical Education", "Art", "Religion (Buddhism/Christianity/Hinduism/Islam)", "Information and Communication Technology (ICT)", "Agriculture", "Business Studies", "Economics", "Buddhism", "Christianity", "Hinduism", "Islam"],
+  "06": ["Mathematics",
+    "Science",
+    "Sinhala",
+    "English"],
+  "07": ["Mathematics",
+    "Science",
+    "Sinhala",
+    "English"],
+  "08": ["Mathematics",
+    "Science",
+    "Sinhala",
+    "English"],
+  "09": ["Mathematics",
+    "Science",
+    "Sinhala",
+    "English"],
+  "10": ["Mathematics",
+    "Science",
+    "Sinhala",
+    "English"],
+  "11": ["Mathematics",
+    "Science",
+    "Sinhala",
+    "English"],
 };
 
 export default function EditBook() {
